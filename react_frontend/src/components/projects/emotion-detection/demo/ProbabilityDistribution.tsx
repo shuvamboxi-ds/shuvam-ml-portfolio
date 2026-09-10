@@ -1,0 +1,4 @@
+import type { EmotionPredictionResponse } from "../../../../types/emotion-detection-demo"
+import { emotionDemoConfig } from "../../../../data/emotion-detection/demo-config"
+
+export function ProbabilityDistribution({ prediction }: { prediction: EmotionPredictionResponse }) { if (!prediction.probabilities?.length) return null; return <div className="emotion-probabilities"><div className="emotion-output-label">PROBABILITY DISTRIBUTION</div>{emotionDemoConfig.classes.map((label) => { const item = prediction.probabilities?.find((probability) => probability.label === label); if (!item) return null; const winning = item.label === prediction.emotion; return <div className="emotion-probability" key={label}><div><span>{label.toUpperCase()}</span><strong>{(item.probability * 100).toFixed(2)}%</strong></div><i><b className={winning ? "is-winning" : ""} style={{ width: `${Math.max(0, Math.min(100, item.probability * 100))}%` }} /></i></div> })}</div> }

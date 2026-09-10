@@ -1,0 +1,2 @@
+type Props = { onUseHistorical: () => void }
+export function LiveForecastPanel({ onUseHistorical }: Props) { return <div className="forecast-mode-panel forecast-live"><span className="forecast-panel-label">LIVE DATA SOURCE</span><strong>Not Connected</strong><p>Live forecasting requires current Delhi electricity-load data.</p><button type="button" className="forecast-text-button" onClick={onUseHistorical}>USE HISTORICAL DEMO →</button></div> }

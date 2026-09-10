@@ -1,0 +1,2 @@
+import { ChevronDown } from "lucide-react"
+export function InferenceDetails() { return <details className="crop-details"><summary>VIEW INFERENCE DETAILS <ChevronDown size={15} /></summary><div><span>MODEL <b>ResNet50</b></span><span>FRAMEWORK <b>PyTorch</b></span><span>INPUT <b>224 × 224 RGB</b></span><span>OUTPUT CLASSES <b>38</b></span><span>CONFIDENCE POLICY <b>90% validation-selected threshold</b></span></div></details> }

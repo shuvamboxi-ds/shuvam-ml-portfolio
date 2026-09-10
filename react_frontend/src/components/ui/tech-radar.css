@@ -1,0 +1,55 @@
+.tech-radar {
+  position: relative;
+  overflow: hidden;
+  padding: 128px 0;
+  background-color: var(--background);
+  background-image: radial-gradient(circle, rgba(245, 243, 244, 0.055) 1px, transparent 1px), radial-gradient(circle at 50% 50%, rgba(208, 0, 0, 0.08), transparent 60%);
+  background-size: 24px 24px, 100% 100%;
+}
+
+.tech-radar__inner { width: min(100%, 1400px); margin: 0 auto; }
+.tech-radar__header { max-width: 760px; margin: 0 auto 64px; padding: 0 24px; text-align: center; }
+.tech-radar__header p:first-child, .tech-radar__category > p { margin: 0; color: var(--accent); font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; line-height: 16px; }
+.tech-radar__header h2 { margin: 16px 0 0; color: var(--text-primary); font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
+.tech-radar__header p:last-child { margin: 20px 0 0; color: var(--text-secondary); font-size: 16px; line-height: 1.65; text-wrap: pretty; }
+
+.tech-radar__category + .tech-radar__category { margin-top: 40px; }
+.tech-radar__category > p { padding: 0 24px; color: var(--text-muted); font-size: 10px; }
+
+.tech-radar__marquee { position: relative; width: 100%; margin-top: 16px; overflow: hidden; }
+.tech-radar__marquee::before, .tech-radar__marquee::after { position: absolute; top: 0; bottom: 0; z-index: 1; width: 96px; content: ""; pointer-events: none; }
+.tech-radar__marquee::before { left: 0; background: linear-gradient(to right, var(--background), transparent); }
+.tech-radar__marquee::after { right: 0; background: linear-gradient(to left, var(--background), transparent); }
+
+.tech-radar__track { display: flex; width: max-content; padding: 6px 0; will-change: transform; }
+.tech-radar__group { display: flex; gap: 12px; padding-right: 12px; }
+.tech-radar__track--left { animation: tech-radar-left 32s linear infinite; }
+.tech-radar__track--right { animation: tech-radar-right 34s linear infinite; transform: translateX(-50%); }
+
+.tech-radar__item { display: flex; flex: 0 0 auto; align-items: center; gap: 10px; width: 132px; min-height: 68px; padding: 8px 10px; border: 1px solid rgba(245, 243, 244, 0.08); border-radius: 999px; color: var(--text-secondary); background: var(--background-secondary); box-shadow: inset 0 1px 0 rgba(245, 243, 244, 0.03); transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease; }
+.tech-radar__item:hover { border-color: rgba(229, 56, 59, 0.35); box-shadow: inset 0 1px 0 rgba(245, 243, 244, 0.05), 0 0 20px rgba(208, 0, 0, 0.1); transform: scale(1.05); }
+.tech-radar__mark { display: grid; flex: 0 0 auto; width: 42px; height: 42px; border: 1px solid rgba(245, 243, 244, 0.1); border-radius: 50%; place-items: center; color: var(--text-primary); background: var(--surface); font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: -0.04em; }
+.tech-radar__name { overflow: hidden; color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px; line-height: 14px; text-overflow: ellipsis; white-space: nowrap; }
+
+@keyframes tech-radar-left { to { transform: translateX(-50%); } }
+@keyframes tech-radar-right { to { transform: translateX(0); } }
+
+@media (max-width: 700px) {
+  .tech-radar { padding: 80px 0; }
+  .tech-radar__header { margin-bottom: 40px; padding: 0 20px; text-align: left; }
+  .tech-radar__header h2 { font-size: 36px; }
+  .tech-radar__header p:last-child { font-size: 14px; }
+  .tech-radar__category > p { padding: 0 20px; }
+  .tech-radar__marquee::before, .tech-radar__marquee::after { width: 36px; }
+  .tech-radar__item { width: 116px; min-height: 60px; }
+  .tech-radar__mark { width: 36px; height: 36px; font-size: 9px; }
+  .tech-radar__name { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-radar__marquee { overflow-x: auto; scrollbar-width: none; }
+  .tech-radar__marquee::-webkit-scrollbar { display: none; }
+  .tech-radar__track, .tech-radar__track--right { animation: none; transform: none; }
+  .tech-radar__group + .tech-radar__group { display: none; }
+  .tech-radar__item { transition: none; }
+}

@@ -1,0 +1,1 @@
+export function GradCamPanel({ url }: { url: string }) { return <div className="crop-gradcam-live"><p>MODEL ATTENTION</p><img src={url} alt="Grad-CAM visualization for the prediction" /><small>Warmer regions contributed more strongly to the model's prediction. Attention does not prove that a highlighted region is biologically responsible for the disease.</small></div> }

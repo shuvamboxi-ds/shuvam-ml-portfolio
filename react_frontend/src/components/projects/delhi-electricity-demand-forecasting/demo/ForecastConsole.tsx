@@ -1,0 +1,11 @@
+import { useState } from "react"
+import { runHistoricalForecast, runLiveForecast } from "../../../../services/delhi-electricity-demand-forecasting/forecast-api"
+import type { DataFeedStatus, ForecastMode, ForecastStatus, HistoricalForecastResult, HistoricalTimestampOption } from "../../../../types/delhi-electricity-demand-demo"
+import { DemandForecastChart } from "./DemandForecastChart"
+import { ForecastModeSelector } from "./ForecastModeSelector"
+import { ForecastResult } from "./ForecastResult"
+import { HistoricalDemoPanel } from "./HistoricalDemoPanel"
+import { LiveForecastPanel } from "./LiveForecastPanel"
+
+type Props = { timestamps: HistoricalTimestampOption[]; feedStatus: DataFeedStatus; onResult: (result: HistoricalForecastResult) => void }
+export function ForecastConsole({ timestamps, feedStatus, onResult }: Props) { const [mode, setMode] = useState<ForecastMode>("historical"); const [selected, setSelected] = useState(""); const [status, setStatus] = useState<ForecastStatus>("idle"); const [result, setResult] = useState<HistoricalForecastResult | null>(null); const [error, setError] = useState<string | null>(null); const historicalUnavailable = feedStatus === "unavailable" || timestamps.length === 0; const run = async () => { setStatus("loading"); setError(null); try { if (mode === "live") { await runLiveForecast() } else { const nextResult = await runHistoricalForecast(selected); setResult(nextResult); onResult(nextResult) } setStatus("success") } catch { setStatus("error"); setError("Forecast could not be generated.") } }; return <section className="forecast-console"><div className="console-top"><span>02 / FORECAST CONSOLE</span><ForecastModeSelector mode={mode} onChange={(value) => { setMode(value); setStatus("idle") }} /></div><div className="console-grid"><div><div className="console-chart"><DemandForecastChart result={result} /></div>{mode === "live" ? <LiveForecastPanel onUseHistorical={() => setMode("historical")} /> : <HistoricalDemoPanel timestamps={timestamps} selected={selected} onSelect={setSelected} onRun={run} loading={status === "loading"} unavailable={historicalUnavailable} />}</div><ForecastResult status={status} result={result} error={error} /></div></section> }

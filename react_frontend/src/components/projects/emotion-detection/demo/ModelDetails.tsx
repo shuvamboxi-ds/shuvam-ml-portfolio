@@ -1,0 +1,4 @@
+import { ChevronDown } from "lucide-react"
+import { emotionDemoConfig } from "../../../../data/emotion-detection/demo-config"
+
+export function ModelDetails() { return <details className="emotion-details"><summary>VIEW MODEL DETAILS <ChevronDown size={15} /></summary><div className="emotion-details-grid"><div><span>BASE MODEL</span><strong>{emotionDemoConfig.model}</strong></div><div><span>CLASSES</span><strong>{emotionDemoConfig.classes.join(" · ")}</strong></div><div><span>TRAINING SUBSET</span><strong>{emotionDemoConfig.trainingSubset}</strong></div><div><span>TEST SAMPLES</span><strong>{emotionDemoConfig.testSamples}</strong></div><div><span>TEST ACCURACY</span><strong>{emotionDemoConfig.testAccuracy}</strong></div><div><span>MACRO F1</span><strong>{emotionDemoConfig.testMacroF1}</strong></div></div><a href={emotionDemoConfig.caseStudyUrl}>READ FULL CASE STUDY →</a></details> }

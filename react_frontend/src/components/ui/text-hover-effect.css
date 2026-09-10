@@ -1,0 +1,15 @@
+.text-hover-effect { width: 100%; cursor: crosshair; }
+.text-hover-effect svg { display: block; width: 100%; height: auto; overflow: visible; }
+.text-hover-effect__outline, .text-hover-effect__base, .text-hover-effect__reveal { font-family: var(--font-sans); font-size: 154px; font-weight: 700; letter-spacing: -0.07em; }
+.text-hover-effect__outline { fill: transparent; stroke: #777777; stroke-dasharray: 16 8; stroke-width: 2px; }
+.text-hover-effect__base { fill: #F5F3F4; opacity: 0.08; }
+.text-hover-effect__reveal { fill: transparent; stroke: url(#footer-text-gradient); stroke-dasharray: 18 8; stroke-width: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 700px) {
+  .text-hover-effect__outline, .text-hover-effect__base, .text-hover-effect__reveal { font-size: 132px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-hover-effect { cursor: default; }
+}

@@ -1,0 +1,53 @@
+.rainbow-border {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.rainbow-border::before,
+.rainbow-border::after {
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(
+    45deg,
+    var(--accent-deep),
+    var(--accent),
+    var(--accent-hover),
+    var(--amber),
+    var(--amber-bright),
+    var(--accent),
+    var(--accent-deep)
+  );
+  background-size: 400%;
+  content: "";
+  pointer-events: none;
+  animation: rainbow-border-flow 20s linear infinite;
+}
+
+.rainbow-border::after {
+  z-index: -2;
+  filter: blur(16px);
+  opacity: 0.48;
+}
+
+.rainbow-border:hover,
+.rainbow-border:focus-visible {
+  border-color: transparent;
+}
+
+.rainbow-border:active { transform: scale(0.98); }
+
+@keyframes rainbow-border-flow {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-border::before,
+  .rainbow-border::after { animation: none; }
+}

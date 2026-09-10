@@ -1,0 +1,2 @@
+import type { BNPLPredictionResponse } from "../../../../types/bnpl-risk-demo"
+export function ProbabilityBars({ prediction }: { prediction: BNPLPredictionResponse }) { return <div className="bnpl-probabilities"><p>CLASS PROBABILITIES</p>{(["low", "medium", "high"] as const).map(key => <div key={key}><div><span>{key.toUpperCase()}</span><strong>{(prediction.probabilities[key] * 100).toFixed(1)}%</strong></div><i><b className={`risk-${key}`} style={{ width: `${Math.max(0, Math.min(100, prediction.probabilities[key] * 100))}%` }} /></i></div>)}</div> }

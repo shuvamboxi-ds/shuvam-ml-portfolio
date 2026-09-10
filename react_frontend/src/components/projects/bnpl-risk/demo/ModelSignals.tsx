@@ -1,0 +1,2 @@
+import { ChevronDown } from "lucide-react"
+export function ModelSignals() { return <details className="bnpl-signals"><summary>WHY THIS OUTPUT? <ChevronDown size={15} /></summary><div><p>KEY MODEL SIGNALS</p><span>Debt-to-income ratio</span><span>Late-payment history</span><span>Employment status</span><span>Active BNPL loans</span><span>Credit score</span><small>These are among the strongest global signals used by the trained model. They are not a local explanation for an individual customer.</small></div></details> }

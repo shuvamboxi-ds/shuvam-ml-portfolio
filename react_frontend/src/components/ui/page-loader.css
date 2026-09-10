@@ -1,0 +1,87 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--background-secondary), var(--background));
+}
+
+.page-loader-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+}
+
+.page-loader-letter {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  opacity: 0.4;
+  animation: loaderLetter 1.6s ease-in-out infinite;
+}
+
+.page-loader-circle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: loaderCircle 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes loaderLetter {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes loaderCircle {
+  0% {
+    transform: rotate(90deg);
+    box-shadow:
+      0 6px 12px 0 #E5383B inset,
+      0 12px 18px 0 #D00000 inset,
+      0 36px 36px 0 #660708 inset,
+      0 0 3px 1.2px rgba(229, 56, 59, 0.3),
+      0 0 6px 1.8px rgba(208, 0, 0, 0.2);
+  }
+
+  50% {
+    transform: rotate(270deg);
+    box-shadow:
+      0 6px 12px 0 #E5383B inset,
+      0 12px 6px 0 #D00000 inset,
+      0 24px 36px 0 #660708 inset,
+      0 0 3px 1.2px rgba(229, 56, 59, 0.3),
+      0 0 6px 1.8px rgba(208, 0, 0, 0.2);
+  }
+
+  100% {
+    transform: rotate(450deg);
+    box-shadow:
+      0 6px 12px 0 #E5383B inset,
+      0 12px 18px 0 #D00000 inset,
+      0 36px 36px 0 #660708 inset,
+      0 0 3px 1.2px rgba(229, 56, 59, 0.3),
+      0 0 6px 1.8px rgba(208, 0, 0, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader-circle,
+  .page-loader-letter {
+    animation: none;
+  }
+}

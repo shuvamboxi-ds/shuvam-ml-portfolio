@@ -1,0 +1,1 @@
+export const cropDiseaseDemoConfig = { model: "ResNet50", framework: "PyTorch", classes: "38", input: "224 × 224 RGB", confidenceGate: 0.9, testAccuracy: "99.42%", macroF1: "0.9916", testSet: "8,146 images", githubUrl: "https://github.com/shuvamboxi-ds/crop-disease-detector", caseStudyUrl: "/projects/crop-disease" } as const
