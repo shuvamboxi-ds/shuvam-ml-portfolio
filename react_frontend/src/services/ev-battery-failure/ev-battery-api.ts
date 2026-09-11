@@ -1,4 +1,4 @@
-import type { BatteryPredictionResponse, BatteryRecord } from "../../types/ev-battery-demo"
+import type { BatteryRecord } from "../../types/ev-battery-demo"
 
 function baseUrl() {
   const endpoint = import.meta.env.VITE_EV_BATTERY_API_URL
@@ -18,5 +18,27 @@ export function getHealthyExample() { return request<BatteryRecord>("/examples/h
 export function getFailureExample() { return request<BatteryRecord>("/examples/failure") }
 export function getBatteryRecord(row: number) { return request<BatteryRecord>(`/records/${row}`) }
 export function predictBattery(record: BatteryRecord) {
-  return request<BatteryPredictionResponse>("/predict", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(record.features ?? {}) })
+  return request<{
+    source_row: number
+    prediction: number
+    predicted_label: "Healthy" | "Failure"
+    failure_probability: number
+    actual_label: number
+    actual_status: "Healthy" | "Failure"
+    correct_prediction: boolean
+  }>("/predict", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      source_row: record.row,
+    }),
+  }).then((result) => ({
+    row: result.source_row,
+    prediction: result.predicted_label,
+    failure_probability: result.failure_probability,
+    actual_label: result.actual_status,
+    correct: result.correct_prediction,
+  }))
 }
