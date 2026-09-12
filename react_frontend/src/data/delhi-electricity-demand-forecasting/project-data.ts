@@ -3,7 +3,7 @@ import type { DataStat, FeatureImportance, ForecastPoint, ModelMetric } from "..
 export const delhiDemandProject = {
   title: "Delhi Electricity Demand Forecasting",
   demoUrl: "/projects/delhi-electricity-demand-forecasting/demo",
-  sourceUrl: "",
+  sourceUrl: "https://github.com/shuvamboxi-ds/delhi-electricity-demand-forecasting",
   metadata: [
     ["FORECAST", "1 Hour Ahead"], ["DATA", "5-Min → Hourly"], ["FINAL MODEL", "HistGradientBoosting"], ["TEST MAPE", "1.70%"], ["STATUS", "Completed"],
   ],

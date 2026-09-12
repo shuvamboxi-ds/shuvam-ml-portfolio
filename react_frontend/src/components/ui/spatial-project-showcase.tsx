@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import { Badge } from "./badge"
 import { Button } from "./button"
+import { delhiDemandProject } from "../../data/delhi-electricity-demand-forecasting/project-data"
 import bnplImage from "../../assets/BPNL.png"
 import cropImage from "../../assets/crop.png"
 import electricityImage from "../../assets/electricity.png"
@@ -63,7 +64,7 @@ const projects: ProjectData[] = [
   {
     id: "delhi-demand", selectorLabel: "Delhi Demand", eyebrow: "TIME SERIES / MACHINE LEARNING", title: "Delhi Electricity Demand Forecasting",
     description: "Forecast Delhi electricity demand from recent, daily and weekly load patterns using lag features and gradient boosting to estimate future consumption.",
-    image: electricityImage, status: "IN PROGRESS", technologies: ["Python", "Gradient Boosting", "scikit-learn", "Time Series", "Feature Engineering"], githubUrl: "", demoUrl: "/projects/delhi-electricity-demand-forecasting/demo", caseStudyUrl: "/projects/delhi-electricity-demand-forecasting",
+    image: electricityImage, status: "IN PROGRESS", technologies: ["Python", "Gradient Boosting", "scikit-learn", "Time Series", "Feature Engineering"], githubUrl: delhiDemandProject.sourceUrl, demoUrl: "/projects/delhi-electricity-demand-forecasting/demo", caseStudyUrl: "/projects/delhi-electricity-demand-forecasting",
     metadata: [{ label: "RAW ROWS", value: "293,184" }, { label: "TEST MAE", value: "63.54" }, { label: "TEST RMSE", value: "87.49" }, { label: "MAPE", value: "1.695%" }],
   },
   {
